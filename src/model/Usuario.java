@@ -13,7 +13,7 @@ public class Usuario {
     private int ident;
     private String login;
     private String senha;
-    private int pontuacao;
+    //private int pontuacao;
     
     
 
@@ -41,14 +41,13 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public int getPontuacao() {
-        return pontuacao;
-    }
+//    public int getPontuacao() {
+//        return pontuacao;
+//    }
+//
+//    public void setPontuacao(int pontuacao) {
+//        this.pontuacao = pontuacao;
+//    }
 
-    public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao;
-    }
-    
-    
-    
+ 
 }

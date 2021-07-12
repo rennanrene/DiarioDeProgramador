@@ -5,16 +5,27 @@
  */
 package diariodoprogramador;
 
+import java.util.ArrayList;
+import model.Comando;
+import model.Usuario;
+
 /**
  *
  * @author Rennan Cavalcante
  */
 public class DiarioDoProgramador {
-
+    
+        
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        String loginAtual;
+        String senhaAtual;
+
+
+        
         // TODO code application logic here
     }
     

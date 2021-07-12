@@ -5,35 +5,39 @@
  */
 package controller;
 
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rennan Cavalcante
  */
 public class UsuarioDAO implements InterfaceUsuario {
 
+    
     @Override
     public void cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
     }
 
     @Override
     public void remover() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(null, "Usuario foi removido com sucesso!");
     }
 
     @Override
     public void pesquisar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void atualizar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

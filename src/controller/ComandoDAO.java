@@ -5,6 +5,11 @@
  */
 package controller;
 
+//import java.util.ArrayList;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.Comando;
+
 /**
  *
  * @author Rennan Cavalcante
@@ -12,13 +17,14 @@ package controller;
 public class ComandoDAO implements InterfaceComando {
 
     @Override
-    public void cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cadastrar() {          
+        JOptionPane.showMessageDialog(null, "Comando cadastrado com sucesso!");
     }
 
     @Override
     public void remover() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -27,13 +33,17 @@ public class ComandoDAO implements InterfaceComando {
     }
 
     @Override
-    public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void listar() {        
+        }
 
     @Override
     public void atualizar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+        
+        
+        
+
 }
+
+
