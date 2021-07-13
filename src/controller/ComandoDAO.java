@@ -7,8 +7,10 @@ package controller;
 
 //import java.util.ArrayList;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.Comando;
+import static view.viewComandos.comandos;
 
 /**
  *
@@ -33,11 +35,19 @@ public class ComandoDAO implements InterfaceComando {
     }
 
     @Override
-    public void listar() {        
+    public List<String> listar() {
+        List<String> cmdListaNomes = new ArrayList();
+        
+        for (Comando c:comandos){
+            cmdListaNomes.add(c.getNome());   
+        }
+        return cmdListaNomes;
+        
         }
 
     @Override
     public void atualizar() {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
         

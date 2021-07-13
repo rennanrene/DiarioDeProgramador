@@ -5,6 +5,8 @@
  */
 package controller;
 
+import java.util.List;
+
 /**
  *
  * @author Rennan Cavalcante
@@ -16,7 +18,7 @@ public interface InterfaceComando {
     
     public void pesquisar();
     
-    public void listar();
+    public List<String> listar();
     
     public void atualizar();
     

@@ -6,8 +6,8 @@
 package view;
 
 import model.Comando;
-import controller.ComandoDAO;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -17,12 +17,55 @@ import javax.swing.table.TableRowSorter;
  */
 public class viewComandos extends javax.swing.JFrame {
     
-    ArrayList<Comando> comandos = new ArrayList();
+    public static ArrayList<Comando> comandos = new ArrayList();
+    
     /**
      * Creates new form viewComandos
      */
     public viewComandos() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) jTComandos.getModel();
+        jTComandos.setRowSorter(new TableRowSorter(modelo));
+        preencherTabela();
+        DefaultTableModel modeloBusca = (DefaultTableModel) jTBusca.getModel();
+        jTBusca.setRowSorter(new TableRowSorter(modeloBusca));
+    }
+    public void preencherTabela() {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTComandos.getModel();
+        modelo.setNumRows(0);
+        
+        for (Comando c: comandos){
+            modelo.addRow(new Object[] {
+                    c.getNome(),
+                    c.getSintaxe(),
+                    c.getDescricao()
+            });
+        }
+
+    }
+    public void preencherTabelaBusca() {
+        String cond = "0";
+        DefaultTableModel modeloBusca = (DefaultTableModel) jTBusca.getModel();
+        modeloBusca.setNumRows(0);
+  
+        
+        for (Comando c: comandos){
+            if(c.getNome().equals(tfBusca.getText())){
+                cond = "1";
+                modeloBusca.addRow(new Object[] {
+                c.getNome(),
+                c.getSintaxe(),
+                c.getDescricao()
+            });
+
+            }
+        }
+        if(cond.equals("0")){
+        
+                JOptionPane.showMessageDialog(null, "Comando nao existente");
+                //System.out.println(tfBusca.getText());
+        }    
     }
 
     
@@ -36,6 +79,8 @@ public class viewComandos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         lComandos = new javax.swing.JLabel();
         btBuscar = new javax.swing.JButton();
         tfBusca = new javax.swing.JTextField();
@@ -44,6 +89,21 @@ public class viewComandos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTComandos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTBusca = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +130,11 @@ public class viewComandos extends javax.swing.JFrame {
         });
 
         btSair.setText("Sair");
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
+            }
+        });
 
         jTComandos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,47 +164,59 @@ public class viewComandos extends javax.swing.JFrame {
             }
         });
 
+        jTBusca.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "CMD", "SINTAXE", "DESCRICAO"
+            }
+        ));
+        jScrollPane3.setViewportView(jTBusca);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btSair)
+                .addGap(18, 18, 18)
+                .addComponent(btCadastrar)
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btSair))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tfBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btCadastrar)
-                                    .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lComandos)
-                        .addGap(293, 293, 293))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(tfBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(lComandos)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(23, 23, 23)
                 .addComponent(lComandos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar)
                     .addComponent(btSair)
@@ -155,26 +232,24 @@ public class viewComandos extends javax.swing.JFrame {
     }//GEN-LAST:event_tfBuscaActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        Comando inputComando = new Comando();
+        preencherTabelaBusca();
         
-        inputComando.setNome(tfBusca.getText());
-        
-        for (Comando cmd: comandos){
-            if (cmd.getNome().equals(tfBusca.getText())){
-                System.out.println("Comando encontrado");
-            }else{
-                System.out.println("Comando nao encontrado");
-            }
-        }
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+        setVisible(false);
         new viewCadComando().setVisible(true);
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        new viewAtualizarComando().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        setVisible(false);
+        new viewPrincipal().setVisible(true);
+    }//GEN-LAST:event_btSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,11 +277,11 @@ public class viewComandos extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(viewComandos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new viewComandos().setVisible(true);
+                
             }
         });
     }
@@ -217,7 +292,11 @@ public class viewComandos extends javax.swing.JFrame {
     private javax.swing.JButton btSair;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTBusca;
     private javax.swing.JTable jTComandos;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lComandos;
     private javax.swing.JTextField tfBusca;
     // End of variables declaration//GEN-END:variables

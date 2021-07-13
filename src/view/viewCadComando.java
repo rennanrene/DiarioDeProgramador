@@ -8,19 +8,18 @@ package view;
 import controller.ComandoDAO;
 import java.util.ArrayList;
 import model.Comando;
-
 /**
  *
  * @author Rennan Cavalcante
  */
 public class viewCadComando extends javax.swing.JFrame {
 
-    ArrayList<Comando> comandos = new ArrayList();
     /**
      * Creates new form CadComando
      */
     public viewCadComando() {
         initComponents();
+        
     }
 
     /**
@@ -147,6 +146,7 @@ public class viewCadComando extends javax.swing.JFrame {
     }//GEN-LAST:event_tfDescricaoActionPerformed
 
     private void tfCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCancelarActionPerformed
+        setVisible(false);
         new viewComandos().setVisible(true);
     }//GEN-LAST:event_tfCancelarActionPerformed
 
@@ -162,10 +162,9 @@ public class viewCadComando extends javax.swing.JFrame {
         comandoAtual.setDescricao(tfDescricao.getText());
         comandoAtual.setSintaxe(tfSintaxe.getText());
         
-        
-        comandos.add(comandoAtual);
+        view.viewComandos.comandos.add(comandoAtual);
         cmddao.cadastrar();
-        System.out.println(comandos);
+        System.out.println(view.viewComandos.comandos);
         
         tfNome.setText("");
         tfSintaxe.setText("");

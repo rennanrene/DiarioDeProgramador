@@ -140,13 +140,17 @@ public class viewPrincipal extends javax.swing.JFrame {
         Usuario userAtual = new Usuario();
         UsuarioDAO dao = new UsuarioDAO();
         
-        userAtual.setLogin(tfLogin.getText());
-        userAtual.setSenha(tfSenha.getText());
-        //userAtual.setPontuacao(0);
-        usuarios.add(userAtual);
-        dao.cadastrar();
-        System.out.println(usuarios);
+        if (tfLogin.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Usuario Invalido! Cadastre um usuario valido.");
         
+        }else{        
+            userAtual.setLogin(tfLogin.getText());
+            userAtual.setSenha(tfSenha.getText());
+            //userAtual.setPontuacao(0);
+            usuarios.add(userAtual);
+            dao.cadastrar();
+            System.out.println(usuarios);
+        }
         tfLogin.setText("");
         tfSenha.setText("");
     }//GEN-LAST:event_btCadastrarActionPerformed

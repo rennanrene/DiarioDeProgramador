@@ -8,7 +8,7 @@ package diariodoprogramador;
 import java.util.ArrayList;
 import model.Comando;
 import model.Usuario;
-
+import view.viewPrincipal;
 /**
  *
  * @author Rennan Cavalcante
@@ -21,8 +21,7 @@ public class DiarioDoProgramador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String loginAtual;
-        String senhaAtual;
+        new view.viewPrincipal().setVisible(true);
 
 
         
